@@ -1,0 +1,42 @@
+import { StatusBar } from 'expo-status-bar';
+import React from 'react';
+import { StyleSheet, Text, View, Image, TouchableOpacity, TouchableNativeFeedback } from 'react-native';
+// import Picture from './assets/icon.png' did not work!
+export default function App() {
+
+  const handlePress = () => {
+    console.log("Pressed")
+  }
+
+  return (
+      <View style={styles.container}>
+        <TouchableNativeFeedback onPress={handlePress}>
+          <View style={{
+            width: 200,
+            height: 300,
+            backgroundColor:"white"}}>
+          </View>
+        </TouchableNativeFeedback>
+        <Text >HELLO MUCIIIKAAAAAAM!!!!!</Text>
+        {/* <Image source={require('./assets/icon.png')}/> */}
+        <TouchableOpacity >
+          <Image 
+            fadeDuration={500}
+            source={{
+            width: 200,
+            height: 300,
+            uri: "https://picsum.photos/id/1/200/300"}}/>
+        </TouchableOpacity>
+        <StatusBar style="auto" />
+      </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: 'lightblue',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+});

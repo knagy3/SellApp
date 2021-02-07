@@ -1,0 +1,36 @@
+// import { StatusBar } from 'expo-status-bar';
+import React from 'react';
+import { StyleSheet, Alert, View, Button, Platform, StatusBar } from 'react-native';
+import { useDimensions, useDeviceOrientation } from '@react-native-community/hooks';
+// import Picture from './assets/icon.png' did not work!
+export default function App() {
+  const {landscape} = useDeviceOrientation();
+  // console.log(useDimensions());
+  const handlePress = () => {
+    console.log("Pressed");
+    Alert.alert("My title", "My message", [
+      { text: "Yes", onPress: () => console.log("Yes") },
+      { text: "No", onPress: () => console.log("No") }
+    ])
+  }
+
+  return (
+      <View style={{height: landscape ? '100%' : '30%', backgroundColor: 'lightblue',}}>
+        <Button title="Click Me" onPress={handlePress}/>
+        {/* <Button title="Click Me" onPress={() =>{
+          Alert.prompt("My title", "My message", text => console.log(text));
+        }}/> ---> DOES NOT WORK WITH ANDROID*/}
+      </View>
+  );
+}
+
+// Validates the property, inline style (style={{}}), does not.
+// If you do a mistake you will not have an error without sylesheet
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: 'lightblue',
+    // marginTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
+  },
+});
