@@ -10,13 +10,19 @@ import Card from './app/components/Card';
 import ListingDetails from './app/screens/ListingDetails';
 import Messages from './app/screens/Messages';
 import Account from './app/screens/Account';
+import ListingsScreen from './app/screens/ListingsScreen';
+import AppTextInput from './app/components/AppTextInput';
+import Screen from './app/components/Screen';
 
 // import Picture from './assets/icon.png' did not work!
 export default function App() {
 
   return (
     // <Welcome/>
-    <Account/>
+    <Screen>
+      <AppTextInput placeholder="Username" icon="email"/>
+    </Screen>
+    
     //<ListingDetails />
     
   );
