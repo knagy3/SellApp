@@ -15,6 +15,7 @@ import AppTextInput from './app/components/AppTextInput';
 import Screen from './app/components/Screen';
 import AppPicker from './app/components/AppPicker';
 import Login from './app/screens/Login';
+import ListingsEdit from './app/screens/ListingsEdit';
 
 const categories = [
   {label: "Furniture", value: 1 },
@@ -27,7 +28,7 @@ export default function App() {
   const [category, setCategory] = useState(categories[0]);
 
   return (
-    <Login/>  
+    <ListingsEdit/>  
   );
 }
 
