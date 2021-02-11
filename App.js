@@ -1,20 +1,9 @@
 // import { StatusBar } from 'expo-status-bar';
-import React, { useState } from 'react';
-import { Platform, StyleSheet, View} from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { Button, Image, Platform, StyleSheet, View} from 'react-native';
 import Welcome from './app/screens/Welcome';
-import ViewImage from './app/screens/ViewImage';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
-import AppText from './app/components/AppText';
-import AppButton from './app/components/AppButton';
-import Card from './app/components/Card';
-import ListingDetails from './app/screens/ListingDetails';
-import Messages from './app/screens/Messages';
-import Account from './app/screens/Account';
-import ListingsScreen from './app/screens/ListingsScreen';
-import AppTextInput from './app/components/AppTextInput';
 import Screen from './app/components/Screen';
-import AppPicker from './app/components/AppPicker';
-import Login from './app/screens/Login';
+
 import ListingsEdit from './app/screens/ListingsEdit';
 
 const categories = [
@@ -25,10 +14,9 @@ const categories = [
 
 // import Picture from './assets/icon.png' did not work!
 export default function App() {
-  const [category, setCategory] = useState(categories[0]);
 
   return (
-    <ListingsEdit/>  
+    <ListingsEdit/>
   );
 }
 
@@ -45,11 +33,14 @@ export default function App() {
   <AppTextInput icon="email" placeholder="Email"/>
 </Screen> */}
 
-// const styles = StyleSheet.create({
-//   container: {
-
-//     flex: 1,
-//     justifyContent: 'center',
-//     alignItems: 'center',
-//   },
-// });
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  image: {
+    height: 200,
+    width: 200,
+  }
+});
