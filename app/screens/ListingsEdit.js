@@ -1,11 +1,12 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
 import * as Yup from 'yup';
-import CategoryPickerItem from '../components/CategoryPickerItem';
 
+import CategoryPickerItem from '../components/CategoryPickerItem';
 import { AppFormField, AppFormPicker, AppForm, SubmitButton } from '../components/forms';
 import FormImagePicker from '../components/forms/FormImagePicker';
 import Screen from '../components/Screen';
+import useLocation from '../hooks/useLocation';
 
 const validationSchema = Yup.object().shape({
     title: Yup.string().required().min(1).label("Title"),
@@ -73,52 +74,53 @@ const categories = [
   ];
 
 function ListingsEdit() {
-    return (
-        <Screen>
-            <AppForm
-                initialValues={{
-                    title: "",
-                    price: "",
-                    description: "",
-                    category: null,
-                    images: [],
-                }}
-                onSubmit={(values) => console.log(values)}
-                validationSchema={validationSchema}
-            >   
-                <FormImagePicker name="images" />
-                <AppFormField
-                    maxLength={255}
-                    name="title"
-                    placeholder="Title"
-                />
-                <AppFormField 
-                    keyboardType="numeric"
-                    maxLength={8}
-                    name="price"
-                    placeholder="Price"
-                    width={120}
-                />
-                <AppFormPicker 
-                    items={categories}
-                    name="category"
-                    // numberOfColumns={3}
-                    // PickerItemComponent={CategoryPickerItem}
-                    placeholder="Category"
-                    width="50%"
-                />
-                <AppFormField 
-                    maxLength={255}
-                    multiline
-                    name="description"
-                    numberOfLines={3}
-                    placeholder="Description"
-                />
-                <SubmitButton title="Post"/>
-            </AppForm>
-            
-        </Screen>
-    );
+  const location = useLocation();
+  return (
+      <Screen>
+          <AppForm
+              initialValues={{
+                  title: "",
+                  price: "",
+                  description: "",
+                  category: null,
+                  images: [],
+              }}
+              onSubmit={(values) => console.log(location)}
+              validationSchema={validationSchema}
+          >   
+              <FormImagePicker name="images" />
+              <AppFormField
+                  maxLength={255}
+                  name="title"
+                  placeholder="Title"
+              />
+              <AppFormField 
+                  keyboardType="numeric"
+                  maxLength={8}
+                  name="price"
+                  placeholder="Price"
+                  width={120}
+              />
+              <AppFormPicker 
+                  items={categories}
+                  name="category"
+                  numberOfColumns={3}
+                  PickerItemComponent={CategoryPickerItem}
+                  placeholder="Category"
+                  width="50%"
+              />
+              <AppFormField 
+                  maxLength={255}
+                  multiline
+                  name="description"
+                  numberOfLines={3}
+                  placeholder="Description"
+              />
+              <SubmitButton title="Post"/>
+          </AppForm>
+          
+      </Screen>
+  );
 }
 const styles = StyleSheet.create({
     

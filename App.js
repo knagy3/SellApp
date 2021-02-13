@@ -1,10 +1,11 @@
 // import { StatusBar } from 'expo-status-bar';
 import React, { useEffect, useState } from 'react';
 import { Button, Image, Platform, StyleSheet, View} from 'react-native';
-import Welcome from './app/screens/Welcome';
-import Screen from './app/components/Screen';
+import { NavigationContainer } from '@react-navigation/native';
 
-import ListingsEdit from './app/screens/ListingsEdit';
+import navigationTheme from "./app/navigation/navigationTheme";
+import AppNavigator from './app/navigation/AppNavigator';
+
 
 const categories = [
   {label: "Furniture", value: 1 },
@@ -16,7 +17,9 @@ const categories = [
 export default function App() {
 
   return (
-    <ListingsEdit/>
+    <NavigationContainer theme={navigationTheme}>
+      <AppNavigator />
+    </NavigationContainer>
   );
 }
 
