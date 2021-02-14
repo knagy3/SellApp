@@ -1,10 +1,16 @@
 import React from 'react';
 import { ImageBackground, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import AppButton from '../components/AppButton';
+import routes from '../navigation/routes';
 
-function Welcome(props) {
-    const handleOnPress = () => {
-        console.log("Tapped");
+function Welcome({ navigation }) {
+
+    const handleOnPressLogin = () => {
+        navigation.navigate(routes.LOGIN);
+    };
+
+    const handleOnPressRegister = () => {
+        navigation.navigate(routes.REGISTER);
     };
 
     return (
@@ -22,8 +28,8 @@ function Welcome(props) {
                     <Text style={styles.tagline}>Sell what you don't need!</Text>
                 </View>
                 <View style={styles.buttonsContainer}>
-                    <AppButton title="login" onPress={handleOnPress}/>            
-                    <AppButton title="register" onPress={handleOnPress} color="secondary"/> 
+                    <AppButton title="login" onPress={handleOnPressLogin}/>            
+                    <AppButton title="register" onPress={handleOnPressRegister} color="secondary"/> 
                 </View>
             </ImageBackground>
         </View>

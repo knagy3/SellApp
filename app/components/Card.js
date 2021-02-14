@@ -1,17 +1,21 @@
 import React from 'react';
 import { View, StyleSheet, Image } from 'react-native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 import colors from '../config/colors';
 import AppText from './AppText';
 
-function Card({ title, subTitle, image }) {
+function Card({ title, subTitle, image, onPress }) {
     return (
-        <View style={styles.card}>
-            <Image style={styles.image} source={image} />
-            <View style={styles.detailesContainer}>
-                <AppText style={styles.title}>{title}</AppText>
-                <AppText style={styles.subTitle}>{subTitle}</AppText>
+        <TouchableOpacity onPress={onPress}>
+            <View style={styles.card}>
+                <Image style={styles.image} source={image} />
+                <View style={styles.detailesContainer}>
+                    <AppText style={styles.title}>{title}</AppText>
+                    <AppText style={styles.subTitle}>{subTitle}</AppText>
+                </View>
             </View>
-        </View>
+        </TouchableOpacity>
+        
     );
 }
 const styles = StyleSheet.create({
@@ -27,6 +31,7 @@ const styles = StyleSheet.create({
     image:{
         width: '100%',
         height: 200,
+        overflow: "hidden",
     },
     subTitle: {
         color: colors.secondary,
