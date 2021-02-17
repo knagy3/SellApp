@@ -1,14 +1,20 @@
 import React from 'react';
-import { View, StyleSheet, Image } from 'react-native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import { View, StyleSheet, TouchableOpacity } from 'react-native';
+import { Image } from "react-native-expo-image-cache";
+
 import colors from '../config/colors';
 import AppText from './AppText';
 
-function Card({ title, subTitle, imageUrl, onPress }) {
+function Card({ title, subTitle, imageUrl, onPress, thumbnailUrl }) {
     return (
         <TouchableOpacity onPress={onPress}>
             <View style={styles.card}>
-                <Image style={styles.image} source={{uri: imageUrl}} />
+                <Image 
+                    style={styles.image}
+                    tint="light"
+                    preview={{ uri: thumbnailUrl }}
+                    uri={imageUrl} 
+                />
                 <View style={styles.detailesContainer}>
                     <AppText style={styles.title}>{title}</AppText>
                     <AppText style={styles.subTitle}>{subTitle}</AppText>

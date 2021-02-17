@@ -1,49 +1,24 @@
 // import { StatusBar } from 'expo-status-bar';
-import React, { useEffect, useState } from 'react';
-import { Button, Image, Platform, StyleSheet, View} from 'react-native';
+import React, { useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 
 import navigationTheme from "./app/navigation/navigationTheme";
 import AppNavigator from './app/navigation/AppNavigator';
 import AuthNavigator from './app/navigation/AuthNavigator';
-
-const categories = [
-  {label: "Furniture", value: 1 },
-  {label: "Clothing", value: 2 },
-  {label: "Cameras", value: 3 },
-];
+import OfflineNotice from './app/components/OfflineNotice';
+import AuthContext from "./app/auth/context";
 
 // import Picture from './assets/icon.png' did not work!
 export default function App() {
+  const [user, setUser] = useState();
 
   return (
-    <NavigationContainer theme={navigationTheme}>
-      <AppNavigator />
-    </NavigationContainer>
+    <AuthContext.Provider value={{ user, setUser }}>
+      <OfflineNotice />
+      <NavigationContainer theme={navigationTheme}>
+        {user ? <AppNavigator /> : <AuthNavigator />}
+      </NavigationContainer>
+    </AuthContext.Provider>
   );
 }
 
-// Validates the property, inline style (style={{}}), does not.
-// If you do a mistake you will not have an error without sylesheet
-
-{/* <Screen>
-  <AppPicker 
-    selectedItem={category}
-    onSelectItem={item=>setCategory(item)}
-    items={categories}
-    icon="apps" 
-    placeholder="Username"/>
-  <AppTextInput icon="email" placeholder="Email"/>
-</Screen> */}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  image: {
-    height: 200,
-    width: 200,
-  }
-});
