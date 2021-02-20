@@ -19,11 +19,6 @@ const getToken = async () => {
   }
 };
 
-const getUser = async () => {
-  const token = await getToken();
-  return token ? jwtDecode(token) : null;
-};
-
 const removeToken = async () => {
   try {
     await SecureStore.deleteItemAsync(key);
@@ -31,5 +26,11 @@ const removeToken = async () => {
     console.log("Error removing the auth token", error);
   }
 };
+
+const getUser = async () => {
+  const token = await getToken();
+  return token ? jwtDecode(token) : null;
+};
+
 
 export default { getToken, getUser, removeToken, storeToken };

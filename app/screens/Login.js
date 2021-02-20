@@ -21,9 +21,7 @@ function Login(props) {
         if (!result.ok) return setLoginFailed(true);
         setLoginFailed(false);
         auth.logIn(result.data);
-        console.log(result.data);
     };
-
 
     return (
         <Screen style={styles.container}>
