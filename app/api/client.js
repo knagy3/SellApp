@@ -1,20 +1,31 @@
 import { create } from "apisauce";
+
 import cache from "../utility/cache";
+import authStorage from '../auth/storage';
+import settings from '../config/settings';
 
 const apiClient = create({
-  baseURL: "http://192.168.100.7:9000/api",
+  baseURL: settings.apiUrl,
+});
+
+// Calling protected API endpoint
+apiClient.addAsyncRequestTransform(async (request) => {
+  const authToken = await authStorage.getToken();
+  if (!authToken) return;
+  request.headers["x-auth-token"] = authToken;
 });
 
 const get = apiClient.get;
 // Redefineing apiClient.get
 apiClient.get = async (url, params, axiosConfig) => {
+  // Before get()
   const response = await get(url, params, axiosConfig);
-
+  // After get()
   if (response.ok) {
     cache.store(url, response.data);
     return response;
   } else {
-    console.log("WTF!")
+    
   }
 
   const data = await cache.get(url);
